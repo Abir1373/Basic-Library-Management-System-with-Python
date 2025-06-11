@@ -1,0 +1,3 @@
+git remote add origin https://github.com/Abir1373/Basic-Library-Management-System-with-Python.git
+git branch -M main
+git push -u origin main
