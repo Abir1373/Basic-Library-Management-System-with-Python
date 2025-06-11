@@ -29,10 +29,17 @@ class Book:
                 else :
                     book.__availability = True 
                     print("Book returned successfully")
+        
     
     def view_book_info():
         for book in Library.book_list:
             print(f'book_id : {book.__book_id} , title : {book.__title} , author : {book.__author} , availability : {book.__availability}')
+
+    def check_id(book_id):
+        for book in Library.book_list:
+            if book.__book_id == book_id :
+                return True
+        return False 
 
     def __repr__(self):
         return f"Book({self.__book_id}, '{self.__title}', '{self.__author}', {self.__availability})"
@@ -55,13 +62,21 @@ def menu() :
             elif type==2 :
                 try :
                     book_id = int(input('Enter book id : '))
-                    Book.borrow_book(book_id) 
+                    ok = Book.check_id(book_id)
+                    if ok :
+                        Book.borrow_book(book_id)
+                    else :
+                        print('Id is not valid') 
                 except :
                     print('Try to enter valid id')
             elif type==3:
                 try:
                     book_id = int(input('Enter book id : '))
-                    Book.return_book(book_id)
+                    ok = Book.check_id(book_id)
+                    if ok :
+                        Book.return_book(book_id)
+                    else :
+                        print('Id is not valid') 
                 except :
                     print('Try to enter valid id')
             elif type==4:
